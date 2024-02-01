@@ -775,3 +775,6 @@ Caused by: java.lang.Exception: File not found: S:\Expenses_traker\0.1v\Back_end
 2024-02-01 22:18:19,827 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2024-02-01 22:18:19,839 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2024-02-01 22:18:19,844 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory S:\Expenses_traker\0.1v\Back_end\Expenses_traker\src\test\resources
+2024-02-01 22:22:25,489 [Worker-56: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-02-01 22:22:25,503 [Worker-56: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-02-01 22:22:25,505 [Worker-56: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory S:\Expenses_traker\0.1v\Back_end\Expenses_traker\src\test\resources

@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 
 @Entity
+
 public class Expenses_entity {
 	@Id
 	@Column(name="Id")
