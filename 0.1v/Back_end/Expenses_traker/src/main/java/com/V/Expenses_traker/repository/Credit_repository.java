@@ -1,0 +1,10 @@
+package com.V.Expenses_traker.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.V.Expenses_traker.entity.Credit_entity;
+@Repository
+public interface Credit_repository extends JpaRepository<Credit_entity, Integer> {
+	
+}
