@@ -1,0 +1,24 @@
+package com.Expenses_traker.entity;
+
+import java.sql.Date;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Expenses_entity {
+
+	@Id
+	@Column(name="ID")
+	private int Id;
+	@Column(name="DATE")
+	private String Date;
+	@Column(name="AMOUNT")
+	private int Amount;
+	@Column(name="CATEGORY")
+	private String Category;
+	@Column(name="TYPE")
+	private String Type;
+	
+	
+	
+}

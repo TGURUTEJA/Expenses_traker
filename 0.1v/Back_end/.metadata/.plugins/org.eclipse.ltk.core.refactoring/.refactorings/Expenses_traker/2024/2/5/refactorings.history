@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.V.Expenses_traker&apos; to &apos;com.Expenses_traker&apos;&#x0D;&#x0A;- Original project: &apos;Expenses_traker&apos;&#x0D;&#x0A;- Original element: &apos;Expenses_traker/src/main/java/com.V.Expenses_traker&apos;&#x0D;&#x0A;- Renamed element: &apos;Expenses_traker/src/main/java/com.Expenses_traker&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings&#x0D;&#x0A;- Rename subpackages of the package" description="Rename package &apos;com.V.Expenses_traker&apos;" flags="589830" hierarchical="true" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.V.Expenses_traker" name="com.Expenses_traker" qualified="false" references="true" stamp="1706794769370" textual="true" version="1.0"/>
+</session>

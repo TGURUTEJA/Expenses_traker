@@ -1,0 +1,74 @@
+package com.Expenses_traker.entity;
+
+import java.sql.Date;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Expenses_entity {
+
+	@Id
+	@Column(name="ID")
+	private int Id;
+	@Column(name="DATE")
+	private Date Date;
+	@Column(name="AMOUNT")
+	private int Amount;
+	@Column(name="CATEGORY")
+	private String Category;
+	@Column(name="TYPE")
+	private String Type;
+	
+	public Expenses_entity(int id, java.sql.Date date, int amount, String category, String type) {
+		super();
+		Id = id;
+		Date = date;
+		Amount = amount;
+		Category = category;
+		Type = type;
+	}
+	
+	public Expenses_entity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Expenses_entity [Id=" + Id + ", Date=" + Date + ", Amount=" + Amount + ", Category=" + Category
+				+ ", Type=" + Type + "]";
+	}
+
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public Date getDate() {
+		return Date;
+	}
+	public void setDate(Date date) {
+		Date = date;
+	}
+	public int getAmount() {
+		return Amount;
+	}
+	public void setAmount(int amount) {
+		Amount = amount;
+	}
+	public String getCategory() {
+		return Category;
+	}
+	public void setCategory(String category) {
+		Category = category;
+	}
+	public String getType() {
+		return Type;
+	}
+	public void setType(String type) {
+		Type = type;
+	}
+	
+	
+}

@@ -1,0 +1,26 @@
+package com.Expenses_traker.entity;
+
+import java.sql.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+@Entity
+@Getter
+@Setter
+public class Income_entity {
+	@Id
+	@Column(name="ID")
+	private int Id;
+	@Column(name="DATE")
+	private Date Date;
+	@Column(name="AMOUNT")
+	private int Amount;
+	@Column(name="CATEGORY")
+	private String Category;
+	@Column(name="TYPE")
+	private String Type;
+	
+}
