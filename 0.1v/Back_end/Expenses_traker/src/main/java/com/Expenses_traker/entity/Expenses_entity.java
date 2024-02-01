@@ -1,70 +1,72 @@
 package com.Expenses_traker.entity;
 
 
+
 import jakarta.persistence.*;
 
-@Entity
-public class Expenses_entity {
 
+@Entity
+
+public class Expenses_entity {
 	@Id
-	@Column(name="ID")
-	private int Id;
-	@Column(name="DATE")
-	private String Date;
-	@Column(name="AMOUNT")
-	private int Amount;
-	@Column(name="CATEGORY")
-	private String Category;
-	@Column(name="TYPE")
-	private String Type;
-	public Expenses_entity(int id, String date, int amount, String category, String type) {
-		super();
-		Id = id;
-		Date = date;
-		Amount = amount;
-		Category = category;
-		Type = type;
+	@Column(name="Id")
+	private int id;
+	@Column(name="date")
+	private String date;
+	@Column(name="amount")
+	private int amount;
+	@Column(name="Category")
+	private String category;
+	@Column(name="Type")
+	private String type;
+	@Override
+	public String toString() {
+		return "Expenses_entity [id=" + id + ", date=" + date + ", amount=" + amount + ", category=" + category
+				+ ", type=" + type + "]";
 	}
 	public Expenses_entity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Expenses_entity(int id, String date, int amount, String category, String type) {
+		super();
+		this.id = id;
+		this.date = date;
+		this.amount = amount;
+		this.category = category;
+		this.type = type;
+	}
 	public int getId() {
-		return Id;
+		return id;
 	}
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getDate() {
-		return Date;
+		return date;
 	}
 	public void setDate(String date) {
-		Date = date;
+		this.date = date;
 	}
 	public int getAmount() {
-		return Amount;
+		return amount;
 	}
 	public void setAmount(int amount) {
-		Amount = amount;
+		this.amount = amount;
 	}
 	public String getCategory() {
-		return Category;
+		return category;
 	}
 	public void setCategory(String category) {
-		Category = category;
+		this.category = category;
 	}
 	public String getType() {
-		return Type;
+		return type;
 	}
 	public void setType(String type) {
-		Type = type;
+		this.type = type;
 	}
-	@Override
-	public String toString() {
-		return "Expenses_entity [Id=" + Id + ", Date=" + Date + ", Amount=" + Amount + ", Category=" + Category
-				+ ", Type=" + Type + "]";
-	}
-	
+		
 	
 	
 }

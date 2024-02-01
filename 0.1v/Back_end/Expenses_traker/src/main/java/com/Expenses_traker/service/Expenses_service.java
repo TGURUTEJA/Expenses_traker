@@ -13,8 +13,7 @@ public class Expenses_service {
 	@Autowired
 	Expenses_repository ExpensesRepository;
 	public ResponseEntity<Object> addExpence(Expenses_entity e){
-		
-		//ExpensesRepository.save(e);
+		ExpensesRepository.save(e);
 		return new ResponseEntity<Object>("Created",HttpStatus.CREATED);
 	}
 

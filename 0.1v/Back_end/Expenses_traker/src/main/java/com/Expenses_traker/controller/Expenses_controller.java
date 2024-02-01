@@ -1,7 +1,6 @@
 package com.Expenses_traker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,9 +18,8 @@ public class Expenses_controller {
 	Expenses_service expensesService;
 	@CrossOrigin
 	@PostMapping("/addExpense")
-	public ResponseEntity<Object> addExpense(@RequestBody String Expenses){
+	public ResponseEntity<Object> addExpense(@RequestBody Expenses_entity Expenses){
 		System.out.println(Expenses);
-		//System.out.println(Expenses.toString());
-		return  new ResponseEntity<Object>("Created",HttpStatus.CREATED);
+		return expensesService.addExpence(Expenses) ;
 	}
 }
