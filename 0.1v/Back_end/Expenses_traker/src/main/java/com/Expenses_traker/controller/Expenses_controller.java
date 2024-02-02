@@ -17,9 +17,9 @@ public class Expenses_controller {
 	@Autowired
 	Expenses_service expensesService;
 	@CrossOrigin
-	@PostMapping("/addExpense")
+	@PostMapping("/api/addExpense")
 	public ResponseEntity<Object> addExpense(@RequestBody Expenses_entity Expenses){
 		System.out.println(Expenses);
-		return expensesService.addExpence(Expenses) ;
+		return expensesService.add(Expenses) ;
 	}
 }

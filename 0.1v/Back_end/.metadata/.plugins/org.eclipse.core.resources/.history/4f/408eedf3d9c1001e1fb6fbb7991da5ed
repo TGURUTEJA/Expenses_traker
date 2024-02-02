@@ -1,0 +1,18 @@
+package com.Expenses_traker.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.Expenses_traker.entity.Income_entity;
+import com.Expenses_traker.repository.Income_repository;
+@Service
+public class Income_service {
+	@Autowired
+	Income_repository incomeRepository;
+	public ResponseEntity<Object> addCredit(Income_entity Income){
+		incomeRepository.save(Income);
+		return new ResponseEntity<Object>("Created",HttpStatus.CREATED);
+	}
+}

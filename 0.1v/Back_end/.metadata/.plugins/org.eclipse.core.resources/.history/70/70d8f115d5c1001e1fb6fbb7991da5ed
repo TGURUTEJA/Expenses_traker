@@ -1,0 +1,22 @@
+package com.Expenses_traker.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+public class Income_catogary_entity {
+
+	@Id
+	@Column(name="ID")
+	private int Id;
+	@Column(name="CATEGORY")
+	private String Category;
+	@Column(name="EXPECTED_INCOME")
+	private int ExpectedIncome;
+
+}
