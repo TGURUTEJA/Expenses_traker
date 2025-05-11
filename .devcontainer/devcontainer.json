@@ -1,0 +1,13 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "Java + Node Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/java:17-node-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "forwardPorts": [8080, 3000],
+  "postCreateCommand": "npm install --prefix frontend",
+  "remoteUser": "vscode"
+}
