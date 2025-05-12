@@ -1,8 +1,11 @@
 // .devcontainer/devcontainer.json
 {
   "name": "Java + Node Dev Container",
-  "image": "mcr.microsoft.com/devcontainers/java:17-node-bullseye",
+  "image": "mcr.microsoft.com/devcontainers/java:17", 
   "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    },
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/aws-cli:1": {},
     "ghcr.io/devcontainers/features/git:1": {}
