@@ -2,18 +2,14 @@
   "name": "Java",
   "image": "mcr.microsoft.com/devcontainers/java:0-17",
   "features": {
-    "ghcr.io/devcontainers/features/java:1": {
-      "version": "none",
-      "installMaven": "true",
-      "installGradle": "false"
-    },
+    "ghcr.io/devcontainers/features/java:1": {},
     "ghcr.io/devcontainers-contrib/features/ant-sdkman:2": {},
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "18"
-    },
+    "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/aws-cli:1": {},
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/itsmechlark/features/postgresql:1": {},
+    "ghcr.io/devcontainers/features/python:1": {}
   },
   "forwardPorts": [3000,8065,8066,8080],
   "postCreateCommand": "npm install --prefix frontend",
