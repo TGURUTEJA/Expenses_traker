@@ -1,6 +1,21 @@
 {
   "name": "Java",
   "image": "mcr.microsoft.com/devcontainers/java:0-17",
+  "services": {
+    "postgres": {
+      "image": "postgres:16",
+      "restart": "unless-stopped",
+      "ports": ["5432:5432"],
+      "env": {
+        "POSTGRES_USER": "user",
+        "POSTGRES_PASSWORD": "password",
+        "POSTGRES_DB": "mydb"
+      },
+      "volumes": ["postgres-data:/var/lib/postgresql/data"]
+    }
+  },
+  "mounts": ["source=postgres-data,target=/var/lib/postgresql/data,type=volume"],
+  "remoteUser": "vscode",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {},
     "ghcr.io/devcontainers-contrib/features/ant-sdkman:2": {},
@@ -8,16 +23,23 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/aws-cli:1": {},
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/itsmechlark/features/postgresql:1": {},
-    "ghcr.io/devcontainers/features/python:1": {}
+     "ghcr.io/itsmechlark/features/postgresql:1": {
+      "version": "latest"
+    },
+    "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {
+      "version": "13"
+    }
   },
-  "forwardPorts": [3000,8065,8066,8080],
+  "forwardPorts": [3000,8065,8066,8080,5432],
   "postCreateCommand": "npm install --prefix frontend",
   "customizations": {
     "vscode": {
       "extensions": [
         "streetsidesoftware.code-spell-checker",
-        "vscjava.vscode-java-pack"
+        "vscjava.vscode-java-pack",
+        "ms-ossdata.vscode-pgsql",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
       ]
     }
   }
