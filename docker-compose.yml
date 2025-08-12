@@ -12,3 +12,19 @@ services:
     ports:
       - "8080:8080"
     restart: always
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydatabase
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./backend/db_service/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always

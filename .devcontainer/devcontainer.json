@@ -17,7 +17,11 @@
   "mounts": ["source=postgres-data,target=/var/lib/postgresql/data,type=volume"],
   "remoteUser": "vscode",
   "features": {
-    "ghcr.io/devcontainers/features/java:1": {},
+     "ghcr.io/devcontainers/features/java:1": {
+      "version": "none",
+      "installMaven": "true",
+      "installGradle": "false"
+    },
     "ghcr.io/devcontainers-contrib/features/ant-sdkman:2": {},
     "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
