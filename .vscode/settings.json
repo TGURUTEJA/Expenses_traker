@@ -11,5 +11,7 @@
             "password": "SQL@PASS",
             "connectionTimeout": 30
         }
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "disabled",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

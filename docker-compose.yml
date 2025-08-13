@@ -1,30 +1,36 @@
-version: "3.8"
 
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:80"
-    restart: always
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - "3000:80"
+  #   restart: always
 
-  backend:
-    build: ./backend
+  authservice:
+    build: ./backend/Auth_service
     ports:
-      - "8080:8080"
+      - "8083:8081"
     restart: always
-    depends_on:
-      - db
-    environment:
-      - DATABASE_URL=postgresql://myuser:mypassword@db:5432/mydatabase
+  
+  db_service:
+    build: ./backend/db_service
+    ports:
+      - "8082:8081"
+    networks:
+      - default
 
-  db:
+  postgres:
     image: postgres:15
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: TestPassword
+      POSTGRES_DB: testdb
     ports:
-      - "5432:5432"
-    volumes:
-      - ./backend/db_service/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - "5439:5432"
+    networks:
+      - default
     restart: always
+
+networks:
+  default:
+    driver: bridge
