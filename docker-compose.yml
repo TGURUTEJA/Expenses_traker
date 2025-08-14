@@ -9,8 +9,10 @@ services:
   authservice:
     build: ./backend/Auth_service
     ports:
-      - "8083:8081"
+      - "8083:8082"
     restart: always
+    networks:
+      - default
   
   db_service:
     build: ./backend/db_service

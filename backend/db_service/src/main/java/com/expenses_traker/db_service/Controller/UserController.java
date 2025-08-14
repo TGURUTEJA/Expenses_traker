@@ -8,9 +8,11 @@ import com.expenses_traker.db_service.Service.TestService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     private TestService testService;
@@ -19,6 +21,7 @@ public class UserController {
     public String getUser() {
         return "this is DB service";
     }
+    
     @GetMapping("/TestData")
     public List<testData> getTestData() {
             return testService.getTestdata();
