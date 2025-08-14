@@ -21,25 +21,10 @@ public class TestDB {
 
 
     public List<testData> getTestData() {
-        // Example API endpoint returning test data
         //String apiUrl = "http://localhost:8081/TestData";
-        HttpHeaders headers = new org.springframework.http.HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        headers.set("Host", "localhost:8081");
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-
-        ResponseEntity<testData[]> response = restTemplate.exchange(
-            "http://db_service:8081/TestData",
-            HttpMethod.GET,
-            entity,
-            testData[].class
-        );
-        testData[] testDataArrayFromExchange = response.getBody();
-        List<testData> testDataListFromExchange = java.util.Arrays.asList(testDataArrayFromExchange);
-        return testDataListFromExchange;
-        // String apiUrl = "http://db_service:8081/TestData";
-        // testData[] testDataArray = restTemplate.getForObject(apiUrl, testData[].class);
-        // List<testData> testDataList = java.util.Arrays.asList(testDataArray);
-        // return testDataList;
+        String apiUrl = "http://dbservice:8081/TestData";
+        testData[] testDataArray = restTemplate.getForObject(apiUrl, testData[].class);
+        List<testData> testDataList = java.util.Arrays.asList(testDataArray);
+        return testDataList;
     }
 }

@@ -12,14 +12,15 @@ services:
       - "8083:8082"
     restart: always
     networks:
-      - default
+      - soe
   
-  db_service:
+  dbservice:
     build: ./backend/db_service
     ports:
       - "8082:8081"
     networks:
-      - default
+      - db
+      - soe
 
   postgres:
     image: postgres:15
@@ -30,9 +31,11 @@ services:
     ports:
       - "5439:5432"
     networks:
-      - default
+      - db
     restart: always
 
 networks:
-  default:
+  db:
+    driver: bridge
+  soe:
     driver: bridge
