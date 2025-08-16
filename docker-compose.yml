@@ -1,11 +1,5 @@
 
 services:
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "3000:80"
-  #   restart: always
-
   authservice:
     build: ./backend/Auth_service
     ports:
@@ -33,6 +27,12 @@ services:
     networks:
       - db
     restart: always
+  
+  # frontend:
+  #   build: ./frontend/expense_static
+  #   ports:
+  #     - "3000:3000"
+  #   restart: always
 
 networks:
   db:

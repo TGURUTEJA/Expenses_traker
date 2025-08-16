@@ -1,0 +1,94 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // -------------------------------
+    // START TASKS
+    // -------------------------------
+    {
+      "label": "Start Docker Compose",
+      "type": "shell",
+      "command": "docker compose up",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Frontend",
+      "type": "shell",
+      "command": "cd frontend/expense_static && npm start",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Full Project",
+      "dependsOn": ["Start Docker Compose", "Start Frontend"],
+      "dependsOrder": "parallel"
+    },
+
+    // -------------------------------
+    // STOP TASKS
+    // -------------------------------
+    {
+      "label": "Stop Docker Compose",
+      "type": "shell",
+      "command": "docker compose down",
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop Frontend",
+      "type": "shell",
+      "command": "pkill -f 'npm start' || true",
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop Full Project",
+      "dependsOn": ["Stop Docker Compose", "Stop Frontend"],
+      "dependsOrder": "parallel"
+    },
+
+    // -------------------------------
+    // RESTART TASKS
+    // -------------------------------
+    {
+      "label": "Restart Full Project",
+      "dependsOn": ["Stop Full Project", "Start Full Project"],
+      "dependsOrder": "sequence"
+    },
+
+    // -------------------------------
+    // Build latest Docker images
+    // -------------------------------
+    {
+      "label": "Build Auth serve",
+      "type": "shell",
+      "command": "cd backend/Auth_service && mvn clean package",
+      "problemMatcher": []
+    },
+     {
+      "label": "Build DB service",
+      "type": "shell",
+      "command": "cd backend/db_service && mvn clean package -Dmaven.test.skip=true",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Full BEProject",
+      "dependsOn": ["Build Auth serve", "Build Db service"],
+      "dependsOrder": "parallel"
+    },
+    // -------------------------------
+    // Build And Start Full Project
+    // -------------------------------
+    {
+      "label": "Build And Start Full Project",
+      "dependsOn": ["Build Full BEProject", "Start Full Project"],
+      "dependsOrder": "sequence"
+    },
+    // -------------------------------
+    // restart with latest buld Build Full Project
+    // -------------------------------
+    {
+      "label": "Restart Full Project with latest build",
+      "dependsOn": ["Build Full BEProject", "Restart Full Project"],
+      "dependsOrder": "sequence"
+    }
+  ]
+}

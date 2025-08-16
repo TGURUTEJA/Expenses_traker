@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.Expenses_traker.Auth_service.Services.TestDB;
 import com.Expenses_traker.Auth_service.pojo.testData;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/")
 public class AuthController {
