@@ -1,0 +1,14 @@
+                                      Table "public.userdetails"
+   Column   |          Type          | Collation | Nullable |                 Default                 
+------------+------------------------+-----------+----------+-----------------------------------------
+ id         | bigint                 |           | not null | nextval('userdetails_id_seq'::regclass)
+ firstname  | character varying(255) |           |          | 
+ secondname | character varying(255) |           |          | 
+ age        | date                   |           |          | 
+ email      | character varying(255) |           |          | 
+Indexes:
+    "userdetails_pkey" PRIMARY KEY, btree (id)
+    "userdetails_email_key" UNIQUE CONSTRAINT, btree (email)
+Referenced by:
+    TABLE "usercred" CONSTRAINT "fk_user_email" FOREIGN KEY (email) REFERENCES userdetails(email) ON DELETE CASCADE
+
