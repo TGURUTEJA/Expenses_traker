@@ -1,5 +1,5 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-COPY target/DBservice.jar app.jar
+COPY target/dbservice.jar app.jar
 EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "app.jar"]
