@@ -14,9 +14,6 @@ CREATE TABLE IF NOT EXISTS userCred (
     email VARCHAR(255) NOT NULL,
     UserName VARCHAR(255),
     password VARCHAR(255),
-    logged_in BOOLEAN,
-    user_token VARCHAR(255),
-    token_expiration TIMESTAMP,
     CONSTRAINT fk_user_email
         FOREIGN KEY (email)
         REFERENCES userDetails(email)

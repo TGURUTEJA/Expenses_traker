@@ -5,20 +5,27 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.relational.core.mapping.Column;
+
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("usercred")
+@Table("usercred") // matches PostgreSQL-folded table name
 public class UserCred {
 
     @Id
     private Long id;
+
+    @Column("email")
     private String email;
-    private String UserName;
+
+    @Column("username") // IMPORTANT: map userName -> username
+    private String userName;
+
+    @Column("password")
     private String password;
-    private Boolean logged_in;
-    private String user_token;
-    private LocalDateTime token_expiration;
+
+ 
 }

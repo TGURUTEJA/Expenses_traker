@@ -45,6 +45,7 @@ public class UserService {
     }
 
     public Mono<UserCred> findUserCredById(Long  id) {
+        System.out.println("Finding UserCred by ID: " + id);
         return userCredRepository.findById(id);
     }
 
@@ -54,5 +55,11 @@ public class UserService {
 
     public Mono<Void> deleteUserCredById(Long  id) {
         return userCredRepository.deleteById(id);
+    }
+    public Mono<UserCred> findUserCredByGmail(String email) {
+        return userCredRepository.findByEmail(email);
+    }
+    public Mono<UserCred> findUserCredByUsername(String username) {
+        return userCredRepository.findByUserName(username); 
     }
 }

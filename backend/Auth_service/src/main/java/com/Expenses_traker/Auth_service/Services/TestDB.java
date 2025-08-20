@@ -8,9 +8,7 @@ import org.springframework.web.client.RestTemplate;
 // import org.apache.tomcat.util.http.parser.MediaType; // Remove this import
 import  org.springframework.http.*;
 
-import com.Expenses_traker.Auth_service.pojo.testData;
-
-
+import com.Expenses_traker.Auth_service.pojo.UserCred;
 
 
 @Service
@@ -20,11 +18,11 @@ public class TestDB {
     private RestTemplate restTemplate;
 
 
-    public List<testData> getTestData() {
+    public List<UserCred> getTestData() {
         //String apiUrl = "http://localhost:8081/TestData";
         String apiUrl = "http://dbservice:8081/TestData";
-        testData[] testDataArray = restTemplate.getForObject(apiUrl, testData[].class);
-        List<testData> testDataList = java.util.Arrays.asList(testDataArray);
+        UserCred[] testDataArray = restTemplate.getForObject(apiUrl, UserCred[].class);
+        List<UserCred> testDataList = java.util.Arrays.asList(testDataArray);
         return testDataList;
     }
 }

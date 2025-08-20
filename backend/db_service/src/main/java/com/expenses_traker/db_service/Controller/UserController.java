@@ -57,6 +57,7 @@ public class UserController {
 
     @PostMapping("/userCreds")
     public Mono<UserCred> createUserCred(@RequestBody UserCred userCred) {
+        System.out.println("Creating UserCred: " + userCred);
         return userService.saveUserCred(userCred);
     }
 
@@ -64,4 +65,13 @@ public class UserController {
     public Mono<Void> deleteUserCredById(@PathVariable Long id) {
         return userService.deleteUserCredById(id);
     }
+    @GetMapping("/userCreds/username/{username}")
+    public Mono<UserCred> getUserCredByUsername(@PathVariable String username) {
+        return userService.findUserCredByUsername(username);        
+    }
+    @GetMapping("/userCreds/gmail/{gmail}")
+    public Mono<UserCred> getUserCredByGmail(@RequestParam String gmail) {
+        return userService.findUserCredByGmail(gmail);  
+    }
+
 }

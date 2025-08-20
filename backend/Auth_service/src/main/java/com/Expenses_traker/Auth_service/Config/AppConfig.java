@@ -8,7 +8,18 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 public class AppConfig {
 
     @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder
+        .additionalInterceptors((request, body, execution) -> {
+            System.out.println(">>> " + request.getMethod() + " " + request.getURI());
+            System.out.println(">>> Headers: " + request.getHeaders());
+            if (body != null && body.length > 0) {
+                System.out.println(">>> Body: " + new String(body));
+            } else {
+                System.out.println(">>> Body: <empty>");
+            }
+            return execution.execute(request, body);
+        })
+        .build();
     }
 }
