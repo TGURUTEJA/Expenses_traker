@@ -3,19 +3,19 @@ DROP TABLE IF EXISTS userDetails CASCADE;
 
 CREATE TABLE IF NOT EXISTS userDetails (
     id BIGSERIAL PRIMARY KEY,
-    FirstName VARCHAR(255),
-    SecondName VARCHAR(255),
-    age DATE,
-    email VARCHAR(255) UNIQUE
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    birth_date DATE
 );
 
 CREATE TABLE IF NOT EXISTS userCred (
     id BIGSERIAL PRIMARY KEY,
-    email VARCHAR(255) NOT NULL,
-    UserName VARCHAR(255),
-    password VARCHAR(255),
-    CONSTRAINT fk_user_email
-        FOREIGN KEY (email)
-        REFERENCES userDetails(email)
+    username VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    user_id BIGINT NOT NULL,
+    CONSTRAINT fk_user
+        FOREIGN KEY (user_id)
+        REFERENCES userDetails(id)
         ON DELETE CASCADE
 );

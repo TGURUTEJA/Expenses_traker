@@ -20,11 +20,12 @@ public class JwtConfig {
         // adjust path if different
         return RsaKeyLoader.loadPrivateKeyFromPem("/private.pem");
     }
-
     @Bean
     public RSAPublicKey jwtPublicKey() {
+        // adjust path if different
         return RsaKeyLoader.loadPublicKeyFromPem("/public.pem");
     }
+
 
     @Bean
     public JwtEncoder jwtEncoder(RSAPrivateKey privateKey, RSAPublicKey publicKey) {

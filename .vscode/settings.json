@@ -12,43 +12,8 @@
             "connectionTimeout": 30
         }
     ],
-    "java.compile.nullAnalysis.mode": "disabled",
-    "java.configuration.updateBuildConfiguration": "interactive",
-
-    // 🚀 Project start button for Command Runner extension
-    "command-runner.commands": {
-         // -------------------------------
-        // START TASKS
-        // -------------------------------
-        "▶️ Start Docker Compose": "workbench.action.tasks.runTask Start Docker Compose",
-        "▶️ Start Frontend": "workbench.action.tasks.runTask Start Frontend",
-        "🚀 Start Full Project": "workbench.action.tasks.runTask Start Full Project",
-
-        // -------------------------------
-        // STOP TASKS
-        // -------------------------------
-        "🛑 Stop Docker Compose": "workbench.action.tasks.runTask Stop Docker Compose",
-        "🛑 Stop Frontend": "workbench.action.tasks.runTask Stop Frontend",
-        "🛑 Stop Full Project": "workbench.action.tasks.runTask Stop Full Project",
-
-        // -------------------------------
-        // RESTART TASKS
-        // -------------------------------
-        "🔄 Restart Full Project": "workbench.action.tasks.runTask Restart Full Project",
-
-        // -------------------------------
-        // BUILD TASKS
-        // -------------------------------
-        "🛠️ Build Auth Service": "workbench.action.tasks.runTask Build Auth serve",
-        "🛠️ Build DB Service": "workbench.action.tasks.runTask Build DB service",
-        "🛠️ Build Full Backend Project": "workbench.action.tasks.runTask Build Full BEProject",
-
-        // -------------------------------
-        // BUILD + START TASKS
-        // -------------------------------
-        "🚀 Build And Start Full Project": "workbench.action.tasks.runTask Build And Start Full Project",
-        "🔄 Restart Full Project with Latest Build": "workbench.action.tasks.runTask Restart Full Project with latest build"
-        
-    },
-     "command-runner.showToolbar": true
+    "java.project.sourcePaths": [
+        "backend/Exp_traking_app"
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

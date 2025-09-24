@@ -4,14 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+
 @Data
 @NoArgsConstructor
-@AllArgsConstructor // matches PostgreSQL-folded table name
-public class UserCred {
-
+@AllArgsConstructor
+public class UserCred implements UserInterface {
     private Long id;
-    private String email;
     private String userName;
-    private String password ;
-
+    private String email;
+    private String password;
+    private Long userId;  // FK to userDetails.id
 }

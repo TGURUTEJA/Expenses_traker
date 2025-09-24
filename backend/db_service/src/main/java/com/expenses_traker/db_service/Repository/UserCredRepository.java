@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 public interface UserCredRepository extends ReactiveCrudRepository<UserCred, Long> {
     // Additional query methods can be defined here if needed
      Mono<UserCred> findByUserName(String userName);
-    // Find user credentials by email
+    // // Find user credentials by email
     Mono<UserCred> findByEmail(String email);
 
 }

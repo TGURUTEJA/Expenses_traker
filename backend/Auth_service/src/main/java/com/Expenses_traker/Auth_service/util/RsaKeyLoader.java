@@ -30,21 +30,21 @@ public final class RsaKeyLoader {
             throw new IllegalStateException("Failed to load RSA private key from " + classpathLocation, e);
         }
     }
-
-    public static RSAPublicKey loadPublicKeyFromPem(String classpathLocation) {
+       public static RSAPublicKey loadPublicKeyFromPem(String classpathLocation) {
         try (InputStream is = new ClassPathResource(classpathLocation).getInputStream()) {
             String pem = new String(is.readAllBytes(), StandardCharsets.UTF_8);
             String sanitized = pem
-                .replace("-----BEGIN PUBLIC KEY-----", "")
-                .replace("-----END PUBLIC KEY-----", "")
-                .replaceAll("\\s", "");
+                    .replace("-----BEGIN PUBLIC KEY-----", "")
+                    .replace("-----END PUBLIC KEY-----", "")
+                    .replaceAll("\\s", "");
             byte[] keyBytes = Base64.getDecoder().decode(sanitized);
-            var spec = new X509EncodedKeySpec(keyBytes);
-            var kf = KeyFactory.getInstance("RSA");
+            X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
+            KeyFactory kf = KeyFactory.getInstance("RSA");
             return (RSAPublicKey) kf.generatePublic(spec);
         } catch (Exception e) {
             throw new IllegalStateException("Failed to load RSA public key from " + classpathLocation, e);
         }
     }
+
 }
  

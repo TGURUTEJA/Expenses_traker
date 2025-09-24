@@ -7,25 +7,26 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.data.relational.core.mapping.Column;
 
-import java.time.LocalDateTime;
+import com.expenses_traker.db_service.pojo.UserInterface;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("usercred") // matches PostgreSQL-folded table name
-public class UserCred {
+@Table("usercred") // matches table name
+public class UserCred implements UserInterface {
 
     @Id
     private Long id;
 
+    @Column("username")
+    private String userName;
+
     @Column("email")
     private String email;
-
-    @Column("username") // IMPORTANT: map userName -> username
-    private String userName;
 
     @Column("password")
     private String password;
 
- 
+    @Column("user_id")
+    private Long userId;  // FK to userDetails.id
 }

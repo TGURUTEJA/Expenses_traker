@@ -14,7 +14,7 @@
     {
       "label": "Start Frontend",
       "type": "shell",
-      "command": "cd frontend/expense_static && npm start",
+      "command": "cd ./frontend/exp_traker_static_app && npm run dev",
       "isBackground": true,
       "problemMatcher": []
     },
@@ -89,6 +89,27 @@
       "label": "Restart Full Project with latest build",
       "dependsOn": ["Build Full BEProject", "Restart Full Project"],
       "dependsOrder": "sequence"
+    },
+    // -------------------------------
+    // Run individual service jars  
+    // -------------------------------    
+    {
+      "label": "Run Auth service jar",
+      "type": "shell",
+      "command": "cd ./backend/Auth_service/target/ && java -jar Auth_service.jar",
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "Run DB service jar",
+      "type": "shell",
+      "command": "cd ./backend/db_service/target/ && java -jar dbservice.jar",
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "Run Jar ALL File",
+      "type": "shell",
+      "dependsOn": ["Run Auth service jar", "Run DB service jar"],
+      "dependsOrder": "parallel"
     }
   ]
 }
