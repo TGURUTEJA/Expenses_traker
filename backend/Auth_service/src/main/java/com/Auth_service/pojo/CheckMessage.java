@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterCheckMessage {
+public class CheckMessage {
     boolean isError;
     String field;
     String message;  

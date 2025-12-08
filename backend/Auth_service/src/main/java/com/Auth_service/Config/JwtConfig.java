@@ -37,4 +37,5 @@ public class JwtConfig {
             (selector, ctx) -> selector.select(new JWKSet(rsa));
         return new NimbusJwtEncoder(jwkSource);
     }
+
 }

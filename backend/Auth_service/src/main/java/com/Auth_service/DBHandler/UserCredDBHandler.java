@@ -1,10 +1,11 @@
 package com.Auth_service.DBHandler;
-import com.Auth_service.pojo.RegisteCheckMessage;
-import com.Auth_service.pojo.RegisterCheckResponce;
+import com.Auth_service.Entity.UserCred;
+import com.Auth_service.Repository.UserCredRepository;
+import com.Auth_service.pojo.AuthResponse;
+import com.Auth_service.pojo.CheckMessage;
 import com.Auth_service.pojo.RegisterRequest;
 import com.Auth_service.pojo.UserDBResponse;
-import com.Auth_service.util.Entity.UserCred;
-import com.Auth_service.util.Repository.UserCredRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,41 +19,39 @@ public class UserCredDBHandler {
     @Autowired
     UserCredRepository userCredRepository;
     @Autowired
-    DBHepler Healper;
+    DBHepler Helper;
 
 
     // -------------------- UserCred --------------------
 
-    public UserDBResponse findAllUserCreds() {
-        try {
-            List<UserCred> list = (List<UserCred>) userCredRepository.findAll();
-            return Healper.userSuccessResponseList("All user creds retrieved", list);
-        } catch (Exception e) {
-            return Healper.userErrorResponse("Error occurred: " + e.getMessage());
-        }
-    }
+//    public UserDBResponse findAllUserCreds() {
+//        try {
+//            List<UserCred> list = (List<UserCred>) userCredRepository.findAll();
+//            return Helper.userSuccessResponseList("All user creds retrieved", list);
+//        } catch (Exception e) {
+//            return Helper.userErrorResponse("Error occurred: " + e.getMessage());
+//        }
+//    }
 
     public UserDBResponse findUserCredById(Long id) {
         try {
             Optional<UserCred> optionalUser = userCredRepository.findById(id);
             if (optionalUser.isPresent()) {
-                return Healper.userSuccessResponseList("User with id " + id + " found",
-                        List.of((UserCred) optionalUser.get()));
+                return Helper.userSuccessResponseList("User with id " + id + " found", optionalUser.get());
             } else {
-                return Healper.userErrorResponse("No user found with id " + id);
+                return Helper.userErrorResponse("No user found with id " + id);
             }
         } catch (Exception e) {
-            return Healper.userErrorResponse("Error occurred: " + e.getMessage());
+            return Helper.userErrorResponse("Error occurred: " + e.getMessage());
         }
     }
 
-    public UserDBResponse saveUserCred(UserCred userCred) {
+    public void saveUserCred(UserCred userCred) {
         try {
             UserCred saved = userCredRepository.save(userCred);
-            return Healper.userSuccessResponseList("User " + saved.getUserName() + " saved",
-                    List.of((UserCred) saved));
+            Helper.userSuccessResponseList("User " + saved.getUserName() + " saved", saved);
         } catch (Exception e) {
-            return Healper.userErrorResponse("Error occurred while saving: " + e.getMessage());
+            Helper.userErrorResponse("Error occurred while saving: " + e.getMessage());
         }
     }
 
@@ -60,12 +59,12 @@ public class UserCredDBHandler {
         try {
             if (userCredRepository.existsById(id)) {
                 userCredRepository.deleteById(id);
-                return Healper.userSuccessResponseList("User with id " + id + " deleted", List.of());
+                return Helper.userSuccessResponseList("User with id " + id + " deleted", null);
             } else {
-                return Healper.userErrorResponse("No user found with id " + id);
+                return Helper.userErrorResponse("No user found with id " + id);
             }
         } catch (Exception e) {
-            return Healper.userErrorResponse("Error occurred while deleting: " + e.getMessage());
+            return Helper.userErrorResponse("Error occurred while deleting: " + e.getMessage());
         }
     }
 
@@ -73,13 +72,12 @@ public class UserCredDBHandler {
         try {
             Optional<UserCred> optionalUser = userCredRepository.findByEmail(email);
             if (optionalUser.isPresent()) {
-                return Healper.userSuccessResponseList("User " + email + " found",
-                        List.of((UserCred) optionalUser.get()));
+                return Helper.userSuccessResponseList("User " + email + " found", optionalUser.get());
             } else {
-                return Healper.userErrorResponse("No user found with email " + email);
+                return Helper.userErrorResponse("No user found with email " + email);
             }
         } catch (Exception e) {
-            return Healper.userErrorResponse("Error occurred: " + e.getMessage());
+            return Helper.userErrorResponse("Error occurred: " + e.getMessage());
         }
     }
 
@@ -87,78 +85,83 @@ public class UserCredDBHandler {
         try {
             Optional<UserCred> optionalUser = userCredRepository.findByUserName(username);
             if (optionalUser.isPresent()) {
-                return Healper.userSuccessResponseList("User " + username + " found",
-                        List.of((UserCred) optionalUser.get()));
+                return Helper.userSuccessResponseList("User " + username + " found", optionalUser.get());
             } else {
-                return Healper.userErrorResponse("No user found with username " + username);
+                return Helper.userErrorResponse("No user found with username " + username);
             }
         } catch (Exception e) {
-            return Healper.userErrorResponse("Error occurred: " + e.getMessage());
+            return Helper.userErrorResponse("Error occurred: " + e.getMessage());
         }
     }
 
-    public RegisterCheckResponce register(RegisterRequest request) {
-        RegisteCheckMessage emailCheck;
-        RegisteCheckMessage usernameCheck;
-        List<RegisteCheckMessage> messages = new ArrayList<>();
+    public AuthResponse registerDBCheckAndSave(RegisterRequest request) {
+        boolean isError = false;
+        List<CheckMessage> messages = new ArrayList<>();
 
         try {
             var optionalEmailUser = userCredRepository.findByEmail(request.getEmail());
             if (optionalEmailUser.isPresent()) {
-                emailCheck = new RegisteCheckMessage("email", true, "An account exists with this Email");
-            } else {
-                emailCheck = new RegisteCheckMessage("email", false, "No account exists with this Email");
+                isError = true;
+                messages.add(new CheckMessage( true,"email", "An account exists with this Email"));
             }
         } catch (Exception e) {
-            emailCheck = new RegisteCheckMessage("email", false, "An error occurred while checking Email");
+            isError = true;
+            messages.add(new CheckMessage( true,"database", "An error occurred while checking Email"));
         }
 
         try {
             var optionalUsernameUser = userCredRepository.findByUserName(request.getUserName());
             if (optionalUsernameUser.isPresent()) {
-                usernameCheck = new RegisteCheckMessage("username", true, "An account exists with this Username");
-            } else {
-                usernameCheck = new RegisteCheckMessage("username", false, "No account exists with this Username");
+                isError = true;
+                messages.add(new CheckMessage( true,"username", "An account exists with this Username"));
             }
         } catch (Exception e) {
-            usernameCheck = new RegisteCheckMessage("username", false, "An error occurred while checking Username");
+            isError = true;
+            messages.add(new CheckMessage( true,"database", "An error occurred while checking Username"));
+        }
+        if (!isError) {
+            UserCred requestUser = new UserCred(request.getUserName(), request.getEmail(), request.getPassword(),"USER");
+            try {
+                UserCred newUser = userCredRepository.save(requestUser);
+                return new AuthResponse(false, messages, "User registered successfully", newUser.getId());
+            } catch (Exception e) {
+                isError = true;
+                messages.add(new CheckMessage(isError,"database", "An error occurred while saving user data"));
+            }
         }
 
-        messages.add(emailCheck);
-        messages.add(usernameCheck);
+        return new AuthResponse(isError, messages, "Registration checks failed", null);
 
-        boolean hasError = emailCheck.isError() || usernameCheck.isError();
-
-        if (hasError) {
-            return new RegisterCheckResponce(
-                    "FAILED",
-                    "Validation errors found",
-                    true,
-                    null,
-                    messages);
-        } else {
-            return saveUserData(request);
+    }
+public UserDBResponse updateUserCred(UserCred updatedUserCred) {
+        if (updatedUserCred == null || updatedUserCred.getId() == null) {
+            return Helper.userErrorResponse("UserCred or ID must not be null");
+        }
+        try {
+            Optional<UserCred> existingUserOpt = userCredRepository.findById(updatedUserCred.getId());
+            if (existingUserOpt.isPresent()) {
+                UserCred existingUser = updateExistingUser(updatedUserCred, existingUserOpt.get());
+                UserCred savedUser = userCredRepository.save(existingUser);
+                return Helper.userSuccessResponseList("User updated successfully", savedUser);
+            } else {
+                return Helper.userErrorResponse("No user found with id " + updatedUserCred.getId());
+            }
+        } catch (Exception e) {
+            return Helper.userErrorResponse("Error occurred while updating: " + e.getMessage());
         }
     }
 
-    public RegisterCheckResponce saveUserData(RegisterRequest request) {
-        try {
-            UserCred requestData = new UserCred(request.getUserName(), request.getEmail(), request.getPassword());
-            UserCred savedDetails = userCredRepository.save(requestData);
-            return  new RegisterCheckResponce(
-                    "SUCCESS",
-                    "User registered successfully",
-                    false,
-                    List.of(savedDetails),
-                    List.of());
-        } catch (Exception e) {
-            return new RegisterCheckResponce(
-                    "FAILED",
-                    "Error while saving credentials: " + e.getMessage(),
-                    true,
-                    null,
-                    null);
+    private static UserCred updateExistingUser(UserCred updatedUserCred, UserCred existingUser) {
+        if (updatedUserCred.getUserName() != null) {
+            existingUser.setUserName(updatedUserCred.getUserName());
         }
+        if (updatedUserCred.getEmail() != null) {
+            existingUser.setEmail(updatedUserCred.getEmail());
+        }
+        if (updatedUserCred.getPassword() != null) {
+            existingUser.setPassword(updatedUserCred.getPassword());
+        }
+        return existingUser;
     }
 
 }

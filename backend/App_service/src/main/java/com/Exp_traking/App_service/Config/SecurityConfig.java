@@ -23,13 +23,14 @@ public class SecurityConfig {
   @Bean
   SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
     http
-        .csrf(ServerHttpSecurity.CsrfSpec::disable)
-        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-        .authorizeExchange(ex -> ex.anyExchange().permitAll())
-        .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
-        .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
-        .logout(ServerHttpSecurity.LogoutSpec::disable)
-        .securityContextRepository(NoOpServerSecurityContextRepository.getInstance()); // <-- stateless
+            .csrf(ServerHttpSecurity.CsrfSpec::disable)
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .authorizeExchange(ex -> ex
+                    .anyExchange().permitAll()    // <-- VERY IMPORTANT
+            )
+            .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
+            .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
+            .logout(ServerHttpSecurity.LogoutSpec::disable);
 
     return http.build();
   }

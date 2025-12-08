@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthResponse {
     boolean isError;
-    List<RegisteCheckMessage> errorData;
+    List<CheckMessage> errorData;
     String message;
     Long ID;
 }

@@ -65,6 +65,22 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-graphql</artifactId>
+		</dependency>
+
+		<!-- GraphQL Java Extended Scalars (for Date, etc.) -->
+		<dependency>
+		<groupId>com.graphql-java</groupId>
+		<artifactId>graphql-java-extended-scalars</artifactId>
+		<version>21.0</version>
+		</dependency>
+		<!-- Reactive MongoDB -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
