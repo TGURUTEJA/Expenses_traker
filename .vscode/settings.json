@@ -15,5 +15,7 @@
     "java.project.sourcePaths": [
         "backend/Exp_traking_app"
     ],
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.compile.nullAnalysis.mode": "automatic"
 }

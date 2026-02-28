@@ -15,7 +15,7 @@ export function customAuthApiCall(
   optionsInput: ApiOptions = {}
 ): Promise<any> {
   const { body, authToken, withCredentials } = optionsInput;
-  const domain = 'http://localhost:8082';
+  const domain = 'http://gurutth.duckdns.org:8082';
   const fullUrl = `${domain}${url}`;
 
   const headers: HeadersInit = {
@@ -44,7 +44,7 @@ export async function customApiCall(
   optionsInput: ApiOptions = {}
 ): Promise<any> {
   const { body } = optionsInput;
-  const domain = process.env.REACT_APP_API_DOMAIN || 'http://localhost:8080';
+  const domain = 'http://gurutth.duckdns.org:8080';
   const fullUrl = `${domain}${url}`;
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export async function customApiCall(
     (fetchOptions.headers as any).cookie = cookieStore.toString();
     console.log("inServer",url,(await cookieStore).toString())
     return fetch(fullUrl, fetchOptions).then(async (response) => {
-    return AuthJWTResponseFilter(response);;
+    return AuthJWTResponseFilter(response);
   });
   }
   console.log(url,fetchOptions)
